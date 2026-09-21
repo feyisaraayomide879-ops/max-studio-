@@ -1,19 +1,19 @@
 <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="24" y1="20" x2="206" y2="214" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg" x1="20" y1="20" x2="212" y2="220" gradientUnits="userSpaceOnUse">
       <stop stop-color="#8B5CF6"/>
-      <stop offset="0.52" stop-color="#6D28D9"/>
+      <stop offset="0.5" stop-color="#6D28D9"/>
       <stop offset="1" stop-color="#22D3EE"/>
     </linearGradient>
   </defs>
 
   <rect x="12" y="12" width="216" height="216" rx="52" fill="#0F172A"/>
   <rect x="24" y="24" width="192" height="192" rx="42" fill="url(#bg)"/>
+  <rect x="38" y="38" width="164" height="164" rx="30" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
 
-  <path d="M78 160V102.5C78 87.6406 89.6406 76 104.5 76H123.5C138.359 76 150 87.6406 150 102.5V127.5C150 142.359 138.359 154 123.5 154H106V166H156V178H78V166H92V154H93.5C84.2157 154 76.5 146.284 76.5 137V107.5C76.5 104.186 79.1863 101.5 82.5 101.5H118.5C121.814 101.5 124.5 104.186 124.5 107.5V127.5C124.5 130.814 121.814 133.5 118.5 133.5H101V117H78V160Z" fill="white"/>
+  <path d="M84 85L120 56L156 85" stroke="#E0F2FE" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M98 84H142V172H98V84Z" fill="white"/>
+  <path d="M104 90H136V106H122V162H138V178H102V162H118V106H104V90Z" fill="#0F172A" opacity="0.16"/>
 
-  <path d="M156 72H178.5C188.165 72 196 79.835 196 89.5V146.5C196 156.165 188.165 164 178.5 164H156V72ZM170 86V150H177.5C181.642 150 185 146.642 185 142.5V93.5C185 89.3579 181.642 86 177.5 86H170Z" fill="white" opacity="0.96"/>
-
-  <path d="M82 52H116V68H82V52Z" fill="#E0F2FE" opacity="0.95"/>
-  <path d="M104 45L128 62L104 79V45Z" fill="#E0F2FE" opacity="0.7"/>
+  <path d="M163 90L182 118H169L186 152L148 122H161L163 90Z" fill="#E0F2FE"/>
 </svg>
