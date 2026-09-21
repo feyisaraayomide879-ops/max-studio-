@@ -120,6 +120,8 @@ contactLink?.addEventListener('click', (event) => {
 
 const reviewForm = document.getElementById('review-form');
 const reviewList = document.getElementById('review-list');
+const REVIEW_KEY = 'icemax-reviews';
+const REVIEW_CHANNEL = 'icemax-reviews-sync';
 
 const defaultReviews = [
   {
@@ -140,7 +142,7 @@ const defaultReviews = [
 ];
 
 const readReviews = () => {
-  const saved = localStorage.getItem('icemax-reviews');
+  const saved = localStorage.getItem(REVIEW_KEY);
   if (!saved) return defaultReviews;
 
   try {
@@ -148,6 +150,16 @@ const readReviews = () => {
     return Array.isArray(parsed) && parsed.length ? parsed : defaultReviews;
   } catch {
     return defaultReviews;
+  }
+};
+
+const syncReviews = (reviews) => {
+  localStorage.setItem(REVIEW_KEY, JSON.stringify(reviews));
+
+  if ('BroadcastChannel' in window) {
+    const channel = new BroadcastChannel(REVIEW_CHANNEL);
+    channel.postMessage({ type: 'reviews-updated', reviews });
+    channel.close();
   }
 };
 
@@ -189,9 +201,24 @@ reviewForm?.addEventListener('submit', (event) => {
 
   const reviews = readReviews();
   const updated = [newReview, ...reviews].slice(0, 5);
-  localStorage.setItem('icemax-reviews', JSON.stringify(updated));
+  syncReviews(updated);
   renderReviews();
   reviewForm.reset();
+});
+
+if ('BroadcastChannel' in window) {
+  const channel = new BroadcastChannel(REVIEW_CHANNEL);
+  channel.onmessage = (event) => {
+    if (event.data?.type === 'reviews-updated') {
+      renderReviews();
+    }
+  };
+}
+
+window.addEventListener('storage', (event) => {
+  if (event.key === REVIEW_KEY) {
+    renderReviews();
+  }
 });
 
 renderReviews();
