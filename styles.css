@@ -755,7 +755,16 @@ body.light-theme .dashboard-card {
   font-size: 0.9rem;
 }
 
-.whatsapp-qr-box {
+.qr-stack {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.whatsapp-qr-box,
+.website-qr-box {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -768,15 +777,24 @@ body.light-theme .dashboard-card {
   min-width: 190px;
 }
 
-.whatsapp-tag {
+.whatsapp-tag,
+.website-tag {
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-weight: 800;
+}
+
+.whatsapp-tag {
   color: #25d366;
 }
 
-.whatsapp-qr-box img {
+.website-tag {
+  color: #8b5cf6;
+}
+
+.whatsapp-qr-box img,
+.website-qr-box img {
   width: 180px;
   height: 180px;
   display: block;
