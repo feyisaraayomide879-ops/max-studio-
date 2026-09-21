@@ -1,14 +1,19 @@
-<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="g1" x1="30" y1="18" x2="170" y2="182" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg" x1="24" y1="20" x2="206" y2="214" gradientUnits="userSpaceOnUse">
       <stop stop-color="#8B5CF6"/>
-      <stop offset="0.55" stop-color="#7C3AED"/>
+      <stop offset="0.52" stop-color="#6D28D9"/>
       <stop offset="1" stop-color="#22D3EE"/>
     </linearGradient>
   </defs>
-  <rect x="12" y="12" width="176" height="176" rx="42" fill="#0F172A"/>
-  <rect x="20" y="20" width="160" height="160" rx="34" fill="url(#g1)"/>
-  <path d="M59 142V90.5C59 78.0738 69.0738 68 81.5 68H103.5C115.926 68 126 78.0738 126 90.5V120.5C126 132.926 115.926 143 103.5 143H88V151H112V158H59V151H77V143H61.5C53.768 143 47.5 136.732 47.5 129V94.5C47.5 91.4624 50.4624 88.5 53.5 88.5H84.5C87.5376 88.5 90.5 91.4624 90.5 94.5V118.5C90.5 121.538 87.5376 124.5 84.5 124.5H72V110H59V142Z" fill="white"/>
-  <path d="M122 58H150.5C157.956 58 164 64.044 164 71.5V130.5C164 137.956 157.956 144 150.5 144H122V58ZM134 70V132H147.5C151.642 132 155 128.642 155 124.5V77.5C155 73.358 151.642 70 147.5 70H134Z" fill="white" opacity="0.95"/>
-  <path d="M78 52H113V66H78V52Z" fill="#E0F2FE" opacity="0.85"/>
+
+  <rect x="12" y="12" width="216" height="216" rx="52" fill="#0F172A"/>
+  <rect x="24" y="24" width="192" height="192" rx="42" fill="url(#bg)"/>
+
+  <path d="M78 160V102.5C78 87.6406 89.6406 76 104.5 76H123.5C138.359 76 150 87.6406 150 102.5V127.5C150 142.359 138.359 154 123.5 154H106V166H156V178H78V166H92V154H93.5C84.2157 154 76.5 146.284 76.5 137V107.5C76.5 104.186 79.1863 101.5 82.5 101.5H118.5C121.814 101.5 124.5 104.186 124.5 107.5V127.5C124.5 130.814 121.814 133.5 118.5 133.5H101V117H78V160Z" fill="white"/>
+
+  <path d="M156 72H178.5C188.165 72 196 79.835 196 89.5V146.5C196 156.165 188.165 164 178.5 164H156V72ZM170 86V150H177.5C181.642 150 185 146.642 185 142.5V93.5C185 89.3579 181.642 86 177.5 86H170Z" fill="white" opacity="0.96"/>
+
+  <path d="M82 52H116V68H82V52Z" fill="#E0F2FE" opacity="0.95"/>
+  <path d="M104 45L128 62L104 79V45Z" fill="#E0F2FE" opacity="0.7"/>
 </svg>
