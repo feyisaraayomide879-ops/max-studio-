@@ -11,6 +11,12 @@ const statEls = document.querySelectorAll('[data-target]');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 
+const runtimeSupabaseConfig = window.ICEMAX_SUPABASE_CONFIG || {};
+
+const SUPABASE_URL = runtimeSupabaseConfig.url || 'https://YOUR_PROJECT_REF.supabase.co';
+const SUPABASE_ANON_KEY = runtimeSupabaseConfig.anonKey || 'PASTE_YOUR_SUPABASE_ANON_KEY_HERE';
+const REVIEW_TABLE = runtimeSupabaseConfig.table || 'reviews';
+
 const savedTheme = localStorage.getItem('max-theme');
 if (savedTheme === 'light') {
   body.classList.add('light-theme');
@@ -168,10 +174,80 @@ const syncReviews = (reviews) => {
   notifyReviewsUpdate();
 };
 
-const renderReviews = () => {
+const isSupabaseConfigured = () => {
+  return typeof SUPABASE_URL === 'string'
+    && SUPABASE_URL.includes('supabase.co')
+    && typeof SUPABASE_ANON_KEY === 'string'
+    && !SUPABASE_ANON_KEY.includes('your-anon-key');
+};
+
+const fetchPublicReviews = async () => {
+  if (!isSupabaseConfigured()) return null;
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/${REVIEW_TABLE}?select=id,name,rating,comment&order=created_at.desc&limit=5`, {
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error('Supabase fetch failed');
+    }
+
+    const data = await response.json();
+    return Array.isArray(data) ? data : [];
+  } catch (error) {
+    console.warn('Falling back to local reviews:', error);
+    return null;
+  }
+};
+
+const savePublicReview = async (review) => {
+  if (!isSupabaseConfigured()) {
+    const reviews = readReviews();
+    const updated = [review, ...reviews].slice(0, 5);
+    syncReviews(updated);
+    return;
+  }
+
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/${REVIEW_TABLE}`, {
+      method: 'POST',
+      headers: {
+        apikey: SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+        'Content-Type': 'application/json',
+        Prefer: 'return=representation'
+      },
+      body: JSON.stringify({
+        name: review.name,
+        rating: review.rating,
+        comment: review.comment
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error('Supabase save failed');
+    }
+  } catch (error) {
+    console.warn('Supabase save failed, using local storage fallback:', error);
+    const reviews = readReviews();
+    const updated = [review, ...reviews].slice(0, 5);
+    syncReviews(updated);
+  }
+};
+
+const renderReviews = async () => {
   if (!reviewList) return;
 
-  const reviews = readReviews();
+  let reviews = await fetchPublicReviews();
+  if (!reviews) {
+    reviews = readReviews();
+  }
+
   reviewList.innerHTML = reviews
     .slice(0, 5)
     .map((review) => {
@@ -189,7 +265,7 @@ const renderReviews = () => {
     .join('');
 };
 
-reviewForm?.addEventListener('submit', (event) => {
+reviewForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const nameInput = document.getElementById('review-name');
@@ -204,9 +280,7 @@ reviewForm?.addEventListener('submit', (event) => {
     comment: commentInput.value.trim()
   };
 
-  const reviews = readReviews();
-  const updated = [newReview, ...reviews].slice(0, 5);
-  syncReviews(updated);
+  await savePublicReview(newReview);
   renderReviews();
   reviewForm.reset();
 });

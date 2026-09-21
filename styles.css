@@ -45,11 +45,15 @@ body {
     var(--bg);
   color: var(--text);
   transition: background 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
 }
 
-img {
+img,
+svg,
+video {
   max-width: 100%;
   display: block;
+  height: auto;
 }
 
 a {
@@ -1001,6 +1005,19 @@ body.light-theme .site-footer {
     padding: 4rem 0;
   }
 
+  .nav-wrap {
+    gap: 0.75rem;
+  }
+
+  .brand {
+    font-size: 0.9rem;
+  }
+
+  .brand-logo {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
   .cta-row {
     flex-direction: column;
     align-items: stretch;
@@ -1008,5 +1025,51 @@ body.light-theme .site-footer {
 
   .btn {
     width: 100%;
+  }
+
+  .review-wrap,
+  .cta-panel,
+  .timeline-item,
+  .feature-card,
+  .testimonial,
+  .project-card {
+    border-radius: 1rem;
+  }
+
+  .review-layout,
+  .qr-stack,
+  .contact-links {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .contact-links {
+    gap: 0.75rem;
+  }
+
+  .contact-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .whatsapp-qr-box,
+  .website-qr-box {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .whatsapp-qr-box img,
+  .website-qr-box img {
+    width: min(160px, 100%);
+    height: auto;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-item span {
+    width: 2.7rem;
+    height: 2.7rem;
   }
 }
