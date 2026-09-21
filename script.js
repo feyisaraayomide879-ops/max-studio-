@@ -153,14 +153,19 @@ const readReviews = () => {
   }
 };
 
-const syncReviews = (reviews) => {
-  localStorage.setItem(REVIEW_KEY, JSON.stringify(reviews));
+const notifyReviewsUpdate = () => {
+  window.dispatchEvent(new CustomEvent('reviews-updated'));
 
   if ('BroadcastChannel' in window) {
     const channel = new BroadcastChannel(REVIEW_CHANNEL);
-    channel.postMessage({ type: 'reviews-updated', reviews });
+    channel.postMessage({ type: 'reviews-updated' });
     channel.close();
   }
+};
+
+const syncReviews = (reviews) => {
+  localStorage.setItem(REVIEW_KEY, JSON.stringify(reviews));
+  notifyReviewsUpdate();
 };
 
 const renderReviews = () => {
@@ -214,6 +219,10 @@ if ('BroadcastChannel' in window) {
     }
   };
 }
+
+window.addEventListener('reviews-updated', () => {
+  renderReviews();
+});
 
 window.addEventListener('storage', (event) => {
   if (event.key === REVIEW_KEY) {
