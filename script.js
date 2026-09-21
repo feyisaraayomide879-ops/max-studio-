@@ -128,6 +128,7 @@ const reviewForm = document.getElementById('review-form');
 const reviewList = document.getElementById('review-list');
 const REVIEW_KEY = 'icemax-reviews';
 const REVIEW_CHANNEL = 'icemax-reviews-sync';
+const LIVE_REVIEW_REFRESH_MS = 5000;
 
 const defaultReviews = [
   {
@@ -265,6 +266,15 @@ const renderReviews = async () => {
     .join('');
 };
 
+const startLiveReviewSync = () => {
+  if (!isSupabaseConfigured()) return;
+
+  window.clearInterval(window.__icemax_reviews_interval__);
+  window.__icemax_reviews_interval__ = window.setInterval(() => {
+    renderReviews();
+  }, LIVE_REVIEW_REFRESH_MS);
+};
+
 reviewForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
@@ -305,6 +315,7 @@ window.addEventListener('storage', (event) => {
 });
 
 renderReviews();
+startLiveReviewSync();
 
 navLinks.forEach((link) => {
   link.addEventListener('click', () => nav.classList.remove('is-open'));
