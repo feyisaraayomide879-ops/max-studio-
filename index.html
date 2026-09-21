@@ -387,6 +387,49 @@
           </div>
         </section>
 
+        <section class="section review-section">
+          <div class="container review-wrap reveal">
+            <div class="section-heading">
+              <p class="eyebrow">Share your experience</p>
+              <h2>Leave a review</h2>
+            </div>
+
+            <div class="review-layout">
+              <form id="review-form" class="review-form">
+                <label>
+                  <span>Name</span>
+                  <input type="text" id="review-name" name="name" placeholder="Your name" required />
+                </label>
+
+                <label>
+                  <span>Rating</span>
+                  <select id="review-rating" name="rating" required>
+                    <option value="5">★★★★★ 5/5</option>
+                    <option value="4">★★★★☆ 4/5</option>
+                    <option value="3">★★★☆☆ 3/5</option>
+                    <option value="2">★★☆☆☆ 2/5</option>
+                    <option value="1">★☆☆☆☆ 1/5</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Comment</span>
+                  <textarea id="review-comment" name="comment" rows="4" placeholder="Tell us about your experience..." required></textarea>
+                </label>
+
+                <button type="submit" class="btn btn-primary">Submit review</button>
+              </form>
+
+              <div class="review-list-panel">
+                <div class="review-list-header">
+                  <h3>Recent reviews</h3>
+                </div>
+                <div id="review-list" class="review-list" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="contact" class="section cta-section">
           <div class="container cta-panel reveal">
             <div class="cta-copy">

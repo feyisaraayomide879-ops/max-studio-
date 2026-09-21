@@ -118,6 +118,84 @@ contactLink?.addEventListener('click', (event) => {
   }, 2200);
 });
 
+const reviewForm = document.getElementById('review-form');
+const reviewList = document.getElementById('review-list');
+
+const defaultReviews = [
+  {
+    name: 'Chinwe Okafor',
+    rating: 5,
+    comment: 'Very professional service and great attention to detail. They explained everything clearly.'
+  },
+  {
+    name: 'Tunde Adebayo',
+    rating: 5,
+    comment: 'Smooth process from start to finish. We felt supported and informed throughout.'
+  },
+  {
+    name: 'Amina Yusuf',
+    rating: 5,
+    comment: 'Reliable, honest, and responsive. I would definitely recommend them.'
+  }
+];
+
+const readReviews = () => {
+  const saved = localStorage.getItem('icemax-reviews');
+  if (!saved) return defaultReviews;
+
+  try {
+    const parsed = JSON.parse(saved);
+    return Array.isArray(parsed) && parsed.length ? parsed : defaultReviews;
+  } catch {
+    return defaultReviews;
+  }
+};
+
+const renderReviews = () => {
+  if (!reviewList) return;
+
+  const reviews = readReviews();
+  reviewList.innerHTML = reviews
+    .slice(0, 5)
+    .map((review) => {
+      const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+      return `
+        <article class="review-item">
+          <div class="review-item-header">
+            <strong>${review.name}</strong>
+            <span class="review-stars">${stars}</span>
+          </div>
+          <p>${review.comment}</p>
+        </article>
+      `;
+    })
+    .join('');
+};
+
+reviewForm?.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const nameInput = document.getElementById('review-name');
+  const ratingInput = document.getElementById('review-rating');
+  const commentInput = document.getElementById('review-comment');
+
+  if (!nameInput || !ratingInput || !commentInput) return;
+
+  const newReview = {
+    name: nameInput.value.trim() || 'Anonymous',
+    rating: Number(ratingInput.value),
+    comment: commentInput.value.trim()
+  };
+
+  const reviews = readReviews();
+  const updated = [newReview, ...reviews].slice(0, 5);
+  localStorage.setItem('icemax-reviews', JSON.stringify(updated));
+  renderReviews();
+  reviewForm.reset();
+});
+
+renderReviews();
+
 navLinks.forEach((link) => {
   link.addEventListener('click', () => nav.classList.remove('is-open'));
 });
