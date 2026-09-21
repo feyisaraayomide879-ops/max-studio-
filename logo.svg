@@ -1,19 +1,28 @@
 <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bg" x1="20" y1="20" x2="212" y2="220" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg" x1="20" y1="18" x2="212" y2="220" gradientUnits="userSpaceOnUse">
       <stop stop-color="#8B5CF6"/>
       <stop offset="0.5" stop-color="#6D28D9"/>
       <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="light" x1="152" y1="70" x2="194" y2="154" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FDF2A8"/>
+      <stop offset="1" stop-color="#FACC15"/>
     </linearGradient>
   </defs>
 
   <rect x="12" y="12" width="216" height="216" rx="52" fill="#0F172A"/>
   <rect x="24" y="24" width="192" height="192" rx="42" fill="url(#bg)"/>
-  <rect x="38" y="38" width="164" height="164" rx="30" stroke="rgba(255,255,255,0.25)" stroke-width="2"/>
+  <rect x="38" y="38" width="164" height="164" rx="30" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
 
-  <path d="M84 85L120 56L156 85" stroke="#E0F2FE" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M98 84H142V172H98V84Z" fill="white"/>
-  <path d="M104 90H136V106H122V162H138V178H102V162H118V106H104V90Z" fill="#0F172A" opacity="0.16"/>
+  <path d="M64 110L120 62L176 110" stroke="#F8FAFC" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M80 104V170C80 174.418 83.5817 178 88 178H152C156.418 178 160 174.418 160 170V104H80Z" fill="#F8FAFC"/>
+  <path d="M92 120H148V170H92V120Z" fill="#E2E8F0"/>
 
-  <path d="M163 90L182 118H169L186 152L148 122H161L163 90Z" fill="#E0F2FE"/>
+  <path d="M120 88L134 104H126V118H112V104H104L120 88Z" fill="url(#light)"/>
+  <path d="M120 126V151" stroke="#F59E0B" stroke-width="8" stroke-linecap="round"/>
+  <path d="M108 151H132" stroke="#F59E0B" stroke-width="8" stroke-linecap="round"/>
+
+  <path d="M96 142H120V160H96V142Z" fill="#0F172A" opacity="0.12"/>
+  <path d="M136 142H152V160H136V142Z" fill="#0F172A" opacity="0.12"/>
 </svg>
