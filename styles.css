@@ -726,6 +726,11 @@ body.light-theme .dashboard-card {
   gap: 1rem;
 }
 
+.review-form label span {
+  display: block;
+  font-size: 0.95rem;
+}
+
 .review-form label {
   display: grid;
   gap: 0.5rem;
@@ -958,7 +963,8 @@ body.light-theme .site-footer {
   .card-grid,
   .testimonial-grid,
   .project-grid,
-  .stats-grid {
+  .stats-grid,
+  .review-layout {
     grid-template-columns: 1fr;
   }
 
@@ -1036,14 +1042,12 @@ body.light-theme .site-footer {
     border-radius: 1rem;
   }
 
-  .review-layout,
+  .review-form,
+  .review-list,
   .qr-stack,
   .contact-links {
-    grid-template-columns: 1fr;
     display: grid;
-  }
-
-  .contact-links {
+    grid-template-columns: 1fr;
     gap: 0.75rem;
   }
 
