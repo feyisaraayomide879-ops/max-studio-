@@ -249,21 +249,24 @@ const renderReviews = async () => {
     reviews = readReviews();
   }
 
-  reviewList.innerHTML = reviews
-    .slice(0, 5)
-    .map((review) => {
-      const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
-      return `
-        <article class="review-item">
-          <div class="review-item-header">
-            <strong>${review.name}</strong>
-            <span class="review-stars">${stars}</span>
-          </div>
-          <p>${review.comment}</p>
-        </article>
-      `;
-    })
-    .join('');
+  reviewList.replaceChildren(...reviews.slice(0, 5).map((review) => {
+    const article = document.createElement('article');
+    const header = document.createElement('div');
+    const name = document.createElement('strong');
+    const stars = document.createElement('span');
+    const comment = document.createElement('p');
+    const rating = Math.min(Math.max(Number(review.rating) || 0, 0), 5);
+
+    article.className = 'review-item';
+    header.className = 'review-item-header';
+    stars.className = 'review-stars';
+    name.textContent = review.name || 'Anonymous';
+    stars.textContent = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+    comment.textContent = review.comment || '';
+    header.append(name, stars);
+    article.append(header, comment);
+    return article;
+  }));
 };
 
 const startLiveReviewSync = () => {
