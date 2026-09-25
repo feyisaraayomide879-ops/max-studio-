@@ -110,20 +110,6 @@ filterButtons.forEach((button) => {
   });
 });
 
-const contactLink = document.querySelector('.cta-panel .btn');
-contactLink?.addEventListener('click', (event) => {
-  event.preventDefault();
-  const message = 'Thanks! We will reach out within one business day.';
-  const originalText = contactLink.textContent;
-  contactLink.textContent = message;
-  contactLink.disabled = true;
-
-  setTimeout(() => {
-    contactLink.textContent = originalText;
-    contactLink.disabled = false;
-  }, 2200);
-});
-
 const reviewForm = document.getElementById('review-form');
 const reviewList = document.getElementById('review-list');
 const REVIEW_KEY = 'icemax-reviews';
