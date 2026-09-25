@@ -1,6 +1,6 @@
 # ICEMAX ELECTRONHOMES
 
-Website: https://feyisaraayomide879-ops.github.io/max-studio-/
+Website: https://feyisaraayomide879-ops.github.io/ICEMAX-ELECTRON-HOMES-/
 
 ## Public review setup
 

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://feyisaraayomide879-ops.github.io/max-studio-/sitemap.xml
+Sitemap: https://feyisaraayomide879-ops.github.io/ICEMAX-ELECTRON-HOMES-/sitemap.xml
